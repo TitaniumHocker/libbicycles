@@ -2,7 +2,7 @@
 
 
 extern unsigned long djb2(char* string) {
-  unsigned long hash = LIBICYCLE_DJB2_MAGIC_HASH;
+  unsigned long hash = BICYCLES_DJB2_MAGIC_HASH;
   int c;
 
   while (c = *string++)

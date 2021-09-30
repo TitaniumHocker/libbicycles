@@ -1,7 +1,7 @@
-#ifndef __LIBICYCLE_HASH_H__
-#define __LIBICYCLE_HASH_H__
+#ifndef __LIBBICYCLES_HASH_H__
+#define __LIBBICYCLES_HASH_H__
 
-#define LIBICYCLE_DJB2_MAGIC_HASH 5381 ///< Magic start hash for djb2 hash function
+#define BICYCLES_DJB2_MAGIC_HASH 5381 ///< Magic start hash for djb2 hash function
 
 /**
  * djb2 hash function
@@ -21,4 +21,4 @@
  */
 extern unsigned long djb2(char* string);
 
-#endif /* __LIBICYCLE_HASH_H__ */
+#endif /* __LIBBICYCLES_HASH_H__ */
