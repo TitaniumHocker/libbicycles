@@ -1,4 +1,7 @@
 # libbicycles
+
+[![Tests](https://github.com/TitaniumHocker/libbicycles/actions/workflows/tests.yml/badge.svg)](https://github.com/TitaniumHocker/libbicycles/actions/workflows/tests.yml)
+
 Yet another "invent a wheel" C library
 
 **This library is WORK IN PROGRESS status**
