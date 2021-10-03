@@ -130,6 +130,198 @@ extern bool list_pcontains(list_t *list, void *data) {
   return false;
 }
 
+extern bool list_contains(list_t *list, void *data, equals_t eq) {
+  if (list == NULL || data == NULL || eq == NULL) return false;
+  if (list->length == 0) return false;
+
+  list_node_t *node = list->head;
+  while (node) {
+    if (eq(node->data, data))
+      return true;
+    node = node->next;
+  }
+
+  return false;
+}
+
+extern bool list_premove(list_t *list, void *data, bool needs_free) {
+  if (list == NULL || data == NULL) return false;
+  if (list->length == 0) return false;
+
+  if (list->length == 1) {
+    if (list->head->data == data) {
+      if (needs_free)
+        free(list->head->data);
+      list_node_t *node = list->head;
+      list->head = NULL;
+      list->tail = NULL;
+      list->length--;
+      free(node);
+      return true;
+    }
+    return false;
+  }
+
+  list_node_t *node = list->head;
+  while (node) {
+    if (node->data == data) {
+      if (needs_free)
+        free(node->data);
+      list_node_t *next = node->next;
+      list_node_t *prev = node->prev;
+
+      if (next)
+        next->prev = prev;
+      if (prev)
+        prev->next = next;
+      
+      if (list->head == node && next)
+        list->head = next;
+      if (list->tail == node && prev)
+        list->tail = prev;
+      free(node);
+      list->length--;
+      return true;
+    }
+  }
+
+  return false;
+}
+
+extern bool list_remove(list_t *list, void *data, equals_t eq, bool needs_free) {
+  if (list == NULL || data == NULL) return false;
+  if (list->length == 0) return false;
+
+  if (list->length == 1) {
+    if (eq(list->head->data, data)) {
+      if (needs_free)
+        free(list->head->data);
+      list_node_t *node = list->head;
+      list->head = NULL;
+      list->tail = NULL;
+      list->length--;
+      free(node);
+      return true;
+    }
+    return false;
+  }
+
+  list_node_t *node = list->head;
+  while (node) {
+    if (eq(node->data, data)) {
+      if (needs_free)
+        free(node->data);
+      list_node_t *next = node->next;
+      list_node_t *prev = node->prev;
+
+      if (next)
+        next->prev = prev;
+      if (prev)
+        prev->next = next;
+      
+      if (list->head == node && next)
+        list->head = next;
+      if (list->tail == node && prev)
+        list->tail = prev;
+      free(node);
+      list->length--;
+      return true;
+    }
+  }
+
+  return false;
+}
+
+extern bool list_premove_all(list_t *list, void *data, bool needs_free) {
+  if (list == NULL || data == NULL) return false;
+  if (list->length == 0) return false;
+
+  if (list->length == 1) {
+    if (list->head->data == data) {
+      if (needs_free)
+        free(list->head->data);
+      list_node_t *node = list->head;
+      list->head = NULL;
+      list->tail = NULL;
+      list->length--;
+      free(node);
+      return true;
+    }
+    return false;
+  }
+
+  list_node_t *node = list->head;
+  bool found = false;
+  while (node) {
+    if (node->data == data) {
+      found = true;
+      if (needs_free)
+        free(node->data);
+      list_node_t *next = node->next;
+      list_node_t *prev = node->prev;
+
+      if (next)
+        next->prev = prev;
+      if (prev)
+        prev->next = next;
+      
+      if (list->head == node && next)
+        list->head = next;
+      if (list->tail == node && prev)
+        list->tail = prev;
+      free(node);
+      list->length--;
+    }
+  }
+
+  return found;
+}
+
+extern bool list_remove_all(list_t *list, void *data, equals_t eq, bool needs_free) {
+  if (list == NULL || data == NULL) return false;
+  if (list->length == 0) return false;
+
+  if (list->length == 1) {
+    if (eq(list->head->data, data)) {
+      if (needs_free)
+        free(list->head->data);
+      list_node_t *node = list->head;
+      list->head = NULL;
+      list->tail = NULL;
+      list->length--;
+      free(node);
+      return true;
+    }
+    return false;
+  }
+
+  list_node_t *node = list->head;
+  bool found = false;
+  while (node) {
+    if (eq(node->data, data)) {
+      found = true;
+      if (needs_free)
+        free(node->data);
+      list_node_t *next = node->next;
+      list_node_t *prev = node->prev;
+
+      if (next)
+        next->prev = prev;
+      if (prev)
+        prev->next = next;
+      
+      if (list->head == node && next)
+        list->head = next;
+      if (list->tail == node && prev)
+        list->tail = prev;
+      free(node);
+      list->length--;
+    }
+  }
+
+  return found;
+}
+
 extern list_iter_t *list_iter_new(list_t *list) {
   if (list == NULL) return NULL;
   if (list->length == 0) return NULL;

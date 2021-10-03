@@ -41,6 +41,16 @@ typedef struct ListIterator {
 } list_iter_t;
 
 /**
+ * @brief Function pointer for equals operations
+ */
+typedef bool (*equals_t)(void*, void*);
+
+/**
+ * @brief Function pointer for comparing operations
+ */
+typedef int (*comparator_t)(void*, void*);
+
+/**
  * @brief Create list
  * 
  * @returns Pointer to created list
@@ -123,6 +133,63 @@ extern bool list_extend(list_t *list, list_t *source);
  * @returns true if this pointer exists in list, overwise false.
  */
 extern bool list_pcontains(list_t *list, void *data);
+
+/**
+ * @brief Check if data exists in list
+ * 
+ * Iterates through all elements of list for searching an
+ * element with which compairing function eq returns true.
+ * 
+ * @warning This operation will perform linear search.
+ * 
+ * @param list Pointer to list.
+ * @param data Pointer to checking data.
+ * @param eq Pointer to function that will be used for equals check.
+ * @returns true if this data exists in list, overwise false.
+ */
+extern bool list_contains(list_t *list, void *data, equals_t eq);
+
+/**
+ * @brief Remove element from list by pointer
+ * 
+ * @param list Pointer to a list.
+ * @param data Pointer to value.
+ * @param needs_free true if need to call free on node data, else false.
+ * @returns true on success, else false.
+ */
+extern bool list_premove(list_t *list, void *data, bool needs_free);
+
+/**
+ * @brief Remove element from list by value
+ * 
+ * @param list Pointer to a list.
+ * @param data Pointer to value.
+ * @param eq Pointer to function that will be used for equals check.
+ * @param needs_free true if need to call free on node data, else false.
+ * @returns true on success, else false
+ */
+extern bool list_remove(list_t *list, void *data, equals_t eq, bool needs_free);
+
+/**
+ * @brief Remove all elements from the list by pointer
+ * 
+ * @param list Pointer to the list.
+ * @param data Pointer to value.
+ * @param needs_free true if need to call free on node data, else false.
+ * @returns true on success, else false.
+ */
+extern bool list_premove_all(list_t *list, void *data, bool needs_free);
+
+/**
+ * @brief Remove all elements from the list by value
+ * 
+ * @param list Pointer to the list.
+ * @param data Pointet to data.
+ * @param eq Pointer to function that will be used for equals check.
+ * @param needs_free true if need to call free on node data, else false.
+ * @returns true on success, else false
+ */
+extern bool list_remove_all(list_t *list, void *data, equals_t eq, bool needs_free);
 
 /**
  * @brief Create list iterator
