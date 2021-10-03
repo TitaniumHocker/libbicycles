@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <stdbool.h>
 
-extern stack_t *stack_new() {
+stack_t *stack_new() {
   stack_t *stack = malloc(sizeof(stack_t));
   if (stack == NULL) return NULL;
   stack->length = 0;
@@ -10,7 +10,7 @@ extern stack_t *stack_new() {
   return stack;
 }
 
-extern bool stack_destroy(stack_t *stack, bool needs_free) {
+bool stack_destroy(stack_t *stack, bool needs_free) {
   if (stack == NULL) return false;
   stack_node_t *node;
 
@@ -27,12 +27,12 @@ extern bool stack_destroy(stack_t *stack, bool needs_free) {
   return true;
 }
 
-extern size_t stack_length(stack_t *stack) {
+size_t stack_length(stack_t *stack) {
   if (stack == NULL) return 0;
   return stack->length;
 }
 
-extern bool stack_push(stack_t *stack, void* data) {
+bool stack_push(stack_t *stack, void* data) {
   if (stack == NULL) return false;
   stack_node_t *node = malloc(sizeof(stack_node_t));
   if (node == NULL) return false;
@@ -46,7 +46,7 @@ extern bool stack_push(stack_t *stack, void* data) {
   return true;
 }
 
-extern void *stack_pop(stack_t *stack) {
+void *stack_pop(stack_t *stack) {
   if (stack == NULL) return NULL;
   if (stack->top == NULL) return NULL;
 

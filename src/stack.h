@@ -48,7 +48,7 @@ typedef struct Stack {
  * @returns Pointer to new stack instance
  *  or NULL if failed to create new stack.
  */
-extern stack_t *stack_new();
+stack_t *stack_new();
 
 /**
  * @brief Destroy stack
@@ -57,7 +57,7 @@ extern stack_t *stack_new();
  * @param needs_free true if need to call free on node data, else false.
  * @returns false if given NULL ponter, overwise true.
  */
-extern bool stack_destroy(stack_t *stack, bool needs_free);
+bool stack_destroy(stack_t *stack, bool needs_free);
 
 /**
  * @brief Get current number of elements in given stack
@@ -65,7 +65,7 @@ extern bool stack_destroy(stack_t *stack, bool needs_free);
  * @param stack Pointer to a stack.
  * @return Current size of a stack.
  */
-extern size_t stack_length(stack_t *stack);
+size_t stack_length(stack_t *stack);
 
 /**
  * @brief Push new value to a stack
@@ -74,7 +74,7 @@ extern size_t stack_length(stack_t *stack);
  * @param data Void pointer to data.
  * @returns true if push was successfull, overwise false.
  */
-extern bool stack_push(stack_t *stack, void *data);
+bool stack_push(stack_t *stack, void *data);
 
 /**
  * @brief Pop value from a stack
@@ -83,6 +83,6 @@ extern bool stack_push(stack_t *stack, void *data);
  * @returns Pointer to popped data or NULL
  *  if stack is empty and nothing to pop.
  */
-extern void *stack_pop(stack_t *stack);
+void *stack_pop(stack_t *stack);
 
 #endif /* __LIBBICYCLES_STACK_H__ */

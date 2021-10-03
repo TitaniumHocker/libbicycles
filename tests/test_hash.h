@@ -17,6 +17,6 @@ bool test_hash_djb2();
  * 
  * @returns true if all tests passed, else false.
  */
-extern bool test_hash();
+bool test_hash();
 
 #endif /* __LIBBICYCLES_TEST_HASH_H__ */

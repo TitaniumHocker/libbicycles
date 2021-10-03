@@ -39,7 +39,7 @@ bool test_hash_djb2() {
   return result;
 }
 
-extern bool test_hash() {
+bool test_hash() {
   bool result = true;
   if (!test_hash_djb2())
     result = false;

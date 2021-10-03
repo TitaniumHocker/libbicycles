@@ -56,7 +56,7 @@ typedef int (*comparator_t)(void*, void*);
  * @returns Pointer to created list
  *  or NULL if failed to create.
  */
-extern list_t *list_new();
+list_t *list_new();
 
 /**
  * @brief Destroy list
@@ -65,7 +65,7 @@ extern list_t *list_new();
  * @param needs_free true if need to call free on node data, else false.
  * @returns false if given NULL pointer, overwise true.
  */
-extern bool list_destroy(list_t *list, bool needs_free);
+bool list_destroy(list_t *list, bool needs_free);
 
 /**
  * @brief Get current length of list
@@ -73,7 +73,7 @@ extern bool list_destroy(list_t *list, bool needs_free);
  * @param list Pointer to list.
  * @returns Number of elements in given list.
  */
-extern size_t list_length(list_t *list);
+size_t list_length(list_t *list);
 
 /**
  * @brief Add new element at head of the list
@@ -82,7 +82,7 @@ extern size_t list_length(list_t *list);
  * @param data Pointer to data to add.
  * @returns true if success, else false.
  */
-extern bool list_push(list_t *list, void *data);
+bool list_push(list_t *list, void *data);
 
 /**
  * @brief Remove element from head of the list
@@ -91,7 +91,7 @@ extern bool list_push(list_t *list, void *data);
  * @returns Pointer to data from removed node,
  *  if list is empty - NULL.
  */
-extern void *list_pop(list_t *list);
+void *list_pop(list_t *list);
 
 /**
  * @brief Add new element at tail of the list
@@ -100,7 +100,7 @@ extern void *list_pop(list_t *list);
  * @param data Pointer to data to add.
  * @returns true if success, else false.
  */
-extern bool list_append(list_t *list, void *data);
+bool list_append(list_t *list, void *data);
 
 /**
  * @brief Remove element from tail of the list
@@ -109,7 +109,7 @@ extern bool list_append(list_t *list, void *data);
  * @returns Pointer to data from removed node,
  *  if list is empty - NULL.
  */
-extern void *list_shift(list_t *list);
+void *list_shift(list_t *list);
 
 /**
  * @brief Add elements from another list to tail of the list
@@ -118,7 +118,7 @@ extern void *list_shift(list_t *list);
  * @param source Pointer to source list.
  * @return true on success, else false.
  */
-extern bool list_extend(list_t *list, list_t *source);
+bool list_extend(list_t *list, list_t *source);
 
 /**
  * @brief Check if data pointer exists in list
@@ -132,7 +132,7 @@ extern bool list_extend(list_t *list, list_t *source);
  * @param data Pointer to checking data.
  * @returns true if this pointer exists in list, overwise false.
  */
-extern bool list_pcontains(list_t *list, void *data);
+bool list_pcontains(list_t *list, void *data);
 
 /**
  * @brief Check if data exists in list
@@ -147,7 +147,7 @@ extern bool list_pcontains(list_t *list, void *data);
  * @param eq Pointer to function that will be used for equals check.
  * @returns true if this data exists in list, overwise false.
  */
-extern bool list_contains(list_t *list, void *data, equals_t eq);
+bool list_contains(list_t *list, void *data, equals_t eq);
 
 /**
  * @brief Remove element from list by pointer
@@ -157,7 +157,7 @@ extern bool list_contains(list_t *list, void *data, equals_t eq);
  * @param needs_free true if need to call free on node data, else false.
  * @returns true on success, else false.
  */
-extern bool list_premove(list_t *list, void *data, bool needs_free);
+bool list_premove(list_t *list, void *data, bool needs_free);
 
 /**
  * @brief Remove element from list by value
@@ -168,7 +168,7 @@ extern bool list_premove(list_t *list, void *data, bool needs_free);
  * @param needs_free true if need to call free on node data, else false.
  * @returns true on success, else false
  */
-extern bool list_remove(list_t *list, void *data, equals_t eq, bool needs_free);
+bool list_remove(list_t *list, void *data, equals_t eq, bool needs_free);
 
 /**
  * @brief Remove all elements from the list by pointer
@@ -178,7 +178,7 @@ extern bool list_remove(list_t *list, void *data, equals_t eq, bool needs_free);
  * @param needs_free true if need to call free on node data, else false.
  * @returns true on success, else false.
  */
-extern bool list_premove_all(list_t *list, void *data, bool needs_free);
+bool list_premove_all(list_t *list, void *data, bool needs_free);
 
 /**
  * @brief Remove all elements from the list by value
@@ -189,7 +189,7 @@ extern bool list_premove_all(list_t *list, void *data, bool needs_free);
  * @param needs_free true if need to call free on node data, else false.
  * @returns true on success, else false
  */
-extern bool list_remove_all(list_t *list, void *data, equals_t eq, bool needs_free);
+bool list_remove_all(list_t *list, void *data, equals_t eq, bool needs_free);
 
 /**
  * @brief Create list iterator
@@ -197,7 +197,7 @@ extern bool list_remove_all(list_t *list, void *data, equals_t eq, bool needs_fr
  * @param list Pointer to list.
  * @returns Iterator pointer or NULL if failed to create.
  */
-extern list_iter_t *list_iter_new(list_t *list);
+list_iter_t *list_iter_new(list_t *list);
 
 /**
  * @brief Perform iteration in iterator
@@ -206,7 +206,7 @@ extern list_iter_t *list_iter_new(list_t *list);
  * @returns Pointer to data from node, of NULL
  *  if iteration completed and nothing to return.
  */
-extern void *list_iter_next(list_iter_t *iter);
+void *list_iter_next(list_iter_t *iter);
 
 /**
  * @brief Destroy list iterator
@@ -214,6 +214,6 @@ extern void *list_iter_next(list_iter_t *iter);
  * @param iter Pointer to iterator.
  * @returns true if success, else false.
  */
-extern bool list_iter_destroy(list_iter_t *iter);
+bool list_iter_destroy(list_iter_t *iter);
 
 #endif /* __LIBBICYCLES_LIST_H__ */

@@ -1,7 +1,6 @@
 #include "hash.h"
 
-
-extern unsigned long djb2(char* string) {
+unsigned long djb2(char* string) {
   unsigned long hash = BICYCLES_DJB2_MAGIC_HASH;
   int c;
 

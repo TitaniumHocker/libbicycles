@@ -29,6 +29,6 @@
  * @param string String for hashing.
  * @returns Result number of srting hashing.
  */
-extern unsigned long djb2(char* string);
+unsigned long djb2(char* string);
 
 #endif /* __LIBBICYCLES_HASH_H__ */

@@ -3,7 +3,7 @@
 #include <stdbool.h>
 
 
-extern list_t *list_new() {
+list_t *list_new() {
   list_t *list = malloc(sizeof(list_t));
   if (list == NULL) return NULL;
 
@@ -14,7 +14,7 @@ extern list_t *list_new() {
   return list;
 }
 
-extern bool list_destroy(list_t *list, bool needs_free) {
+bool list_destroy(list_t *list, bool needs_free) {
   if (list == NULL) return false;
   if (list->length == 0) {
     free(list);
@@ -34,12 +34,12 @@ extern bool list_destroy(list_t *list, bool needs_free) {
   return true;
 }
 
-extern size_t list_length(list_t *list) {
+size_t list_length(list_t *list) {
   if (list == NULL) return 0;
   return list->length;
 }
 
-extern bool list_push(list_t *list, void *data) {
+bool list_push(list_t *list, void *data) {
   if (list == NULL || data == NULL) return false;
   list_node_t *node = malloc(sizeof(node));
   if (node == NULL) return false;
@@ -58,7 +58,7 @@ extern bool list_push(list_t *list, void *data) {
   return true;
 }
 
-extern void *list_pop(list_t *list) {
+void *list_pop(list_t *list) {
   if (list == NULL) return NULL;
   if (list->length == 0) return NULL;
 
@@ -71,7 +71,7 @@ extern void *list_pop(list_t *list) {
   return data;
 }
 
-extern bool list_append(list_t *list, void *data) {
+bool list_append(list_t *list, void *data) {
   if (list == NULL || data == NULL) return false;
 
   list_node_t *node = malloc(sizeof(list_node_t));
@@ -91,7 +91,7 @@ extern bool list_append(list_t *list, void *data) {
   return true;
 }
 
-extern void *list_shift(list_t *list) {
+void *list_shift(list_t *list) {
   if (list == NULL) return NULL;
   if (list->length == 0) return NULL;
 
@@ -104,7 +104,7 @@ extern void *list_shift(list_t *list) {
   return data;
 }
 
-extern bool list_extern(list_t *list, list_t *source) {
+bool list_extern(list_t *list, list_t *source) {
   if (list == NULL || source == NULL) return false;
   
   list_node_t *node = source->head;
@@ -116,7 +116,7 @@ extern bool list_extern(list_t *list, list_t *source) {
   return true;
 }
 
-extern bool list_pcontains(list_t *list, void *data) {
+bool list_pcontains(list_t *list, void *data) {
   if (list == NULL || data == NULL) return false;
   if (list->length == 0) return false;
 
@@ -130,7 +130,7 @@ extern bool list_pcontains(list_t *list, void *data) {
   return false;
 }
 
-extern bool list_contains(list_t *list, void *data, equals_t eq) {
+bool list_contains(list_t *list, void *data, equals_t eq) {
   if (list == NULL || data == NULL || eq == NULL) return false;
   if (list->length == 0) return false;
 
@@ -144,7 +144,7 @@ extern bool list_contains(list_t *list, void *data, equals_t eq) {
   return false;
 }
 
-extern bool list_premove(list_t *list, void *data, bool needs_free) {
+bool list_premove(list_t *list, void *data, bool needs_free) {
   if (list == NULL || data == NULL) return false;
   if (list->length == 0) return false;
 
@@ -188,7 +188,7 @@ extern bool list_premove(list_t *list, void *data, bool needs_free) {
   return false;
 }
 
-extern bool list_remove(list_t *list, void *data, equals_t eq, bool needs_free) {
+bool list_remove(list_t *list, void *data, equals_t eq, bool needs_free) {
   if (list == NULL || data == NULL) return false;
   if (list->length == 0) return false;
 
@@ -232,7 +232,7 @@ extern bool list_remove(list_t *list, void *data, equals_t eq, bool needs_free) 
   return false;
 }
 
-extern bool list_premove_all(list_t *list, void *data, bool needs_free) {
+bool list_premove_all(list_t *list, void *data, bool needs_free) {
   if (list == NULL || data == NULL) return false;
   if (list->length == 0) return false;
 
@@ -277,7 +277,7 @@ extern bool list_premove_all(list_t *list, void *data, bool needs_free) {
   return found;
 }
 
-extern bool list_remove_all(list_t *list, void *data, equals_t eq, bool needs_free) {
+bool list_remove_all(list_t *list, void *data, equals_t eq, bool needs_free) {
   if (list == NULL || data == NULL) return false;
   if (list->length == 0) return false;
 
@@ -322,7 +322,7 @@ extern bool list_remove_all(list_t *list, void *data, equals_t eq, bool needs_fr
   return found;
 }
 
-extern list_iter_t *list_iter_new(list_t *list) {
+list_iter_t *list_iter_new(list_t *list) {
   if (list == NULL) return NULL;
   if (list->length == 0) return NULL;
 
@@ -333,7 +333,7 @@ extern list_iter_t *list_iter_new(list_t *list) {
   return iter;
 }
 
-extern void *list_iter_next(list_iter_t *iter) {
+void *list_iter_next(list_iter_t *iter) {
   if (iter == NULL) return NULL;
   if (iter->current == NULL) return NULL;
   
@@ -343,7 +343,7 @@ extern void *list_iter_next(list_iter_t *iter) {
   return data;
 }
 
-extern bool list_iter_destroy(list_iter_t *iter) {
+bool list_iter_destroy(list_iter_t *iter) {
   if (iter == NULL) return false;
   free(iter);
   return true;
