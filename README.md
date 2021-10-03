@@ -29,5 +29,5 @@ sudo make unsinstall
 
 Tests can be started with this command:
 ```bash
-make test
+make check
 ```

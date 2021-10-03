@@ -36,12 +36,12 @@ $(BUILD)/$(SO): $(SOURCE)/*.c $(SOURCE)/*.h
 	mkdir -p $(BUILD)
 	$(CC) $(CFLAGS) -fPIC -shared -o $@ $^ -lc
 
-test: $(BUILD)/run_tests
+check: $(BUILD)/run_tests
 	LD_LIBRARY_PATH=$(BUILD) $^
 
 $(BUILD)/run_tests: $(TESTS)/*.c $(BUILD)/$(SO)
 	mkdir -p $(BUILD)
-	$(CC) $(CFLAGS) -o $@ $(TESTS)/*.c -Lbuild -lbicycles
+	$(CC) $(CFLAGS) -o $@ $(TESTS)/*.c $(TESTS)/*.h -Lbuild -lbicycles
 
 clean:
 	$(RM) $(RMFLAGS) $(BUILD)
