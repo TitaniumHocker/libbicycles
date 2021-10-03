@@ -2,13 +2,14 @@
 #include <stdio.h>
 #include <stdbool.h>
 #include "test_hash.h"
+#include "test_stack.h"
 
 
 bool run_tests() {
   bool result = true;
 
-  if (!test_hash())
-    result = false;
+  if (!test_hash()) result = false;
+  if (!test_stack()) result = false;
 
   return result;
 }

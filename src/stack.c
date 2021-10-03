@@ -23,7 +23,9 @@ bool stack_destroy(stack_t *stack, bool needs_free) {
 
     free(node);
   }
-
+  
+  free(stack);
+  stack = NULL;
   return true;
 }
 
